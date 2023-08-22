@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teams', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('branch_id');
+        Schema::create('replies', function (Blueprint $table) {
+            $table->id(); 
+            $table->foreignId('ticket_id');
+            $table->text('message');
+            $table->foreignId('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('replies');
     }
 };

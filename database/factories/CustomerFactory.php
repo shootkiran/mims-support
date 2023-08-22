@@ -17,7 +17,9 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>$this->faker->name,
+            'primary_contact'=>$this->faker->numberBetween(9800000000,9841999999),
+            'branch_id'=>1
         ];
     }
 }

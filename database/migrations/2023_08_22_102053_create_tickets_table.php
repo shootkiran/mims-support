@@ -13,17 +13,22 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('user_id')->nullable();
-            $table->foreignId('customer_id')->nullable();
+            $table->string('subject');
+            $table->foreignId('created_by');
+            $table->foreignId('branch_id')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('status_id')->default(1);
+            $table->foreignId('assigned_to')->nullable();
+            $table->foreignId('priority_id')->default(1);
             $table->foreignId('category_id')->nullable();
-            $table->foreignId('priority_id')->nullable();
-            $table->foreignId('status_id')->nullable();
-            $table->foreignId('last_replier_id')->nullable();
-            $table->dateTime('last_replied_at')->nullable();
-            $table->dateTime('scheduled_at')->nullable();
-            $table->string('assigned_to_type')->nullable();
-            $table->foreignId('assigned_to_id')->nullable();
+            $table->foreignId('team_id')->nullable();
+            $table->foreignId('closed_by')->nullable();
+            $table->dateTime('closed_at')->nullable();
+            $table->foreignId('customer_id')->nullable();
+            $table->foreignId('lead_id')->nullable();
+            $table->dateTime('scheduled_for')->nullable();
+            $table->foreignId('last_replied_by')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

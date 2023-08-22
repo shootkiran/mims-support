@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('number');
+            $table->string('primary_contact');
+            $table->foreignId('branch_id')->default(1);
             $table->timestamps();
         });
     }
